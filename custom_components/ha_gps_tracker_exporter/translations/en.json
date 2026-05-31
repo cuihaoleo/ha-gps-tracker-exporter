@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "HA GPS Tracker Exporter",
+        "description": "Exposes device_tracker GPS coordinates on the Prometheus endpoint /api/gps_prometheus (requires a bearer token).",
+        "data": {
+          "namespace": "Metric namespace"
+        },
+        "data_description": {
+          "namespace": "Prefix for every exported metric, e.g. \"homeassistant\" produces homeassistant_device_tracker_latitude_degrees."
+        }
+      }
+    },
+    "error": {
+      "invalid_namespace": "Namespace must start with a letter, underscore or colon and contain only letters, numbers, underscores or colons."
+    },
+    "abort": {
+      "single_instance_allowed": "This integration can only be configured once."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HA GPS Tracker Exporter options",
+        "data": {
+          "namespace": "Metric namespace"
+        },
+        "data_description": {
+          "namespace": "Prefix for every exported metric. Changes take effect on the next Prometheus scrape."
+        }
+      }
+    },
+    "error": {
+      "invalid_namespace": "Namespace must start with a letter, underscore or colon and contain only letters, numbers, underscores or colons."
+    }
+  }
+}
