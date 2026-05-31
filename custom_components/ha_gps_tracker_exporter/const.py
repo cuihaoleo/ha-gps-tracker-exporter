@@ -18,3 +18,7 @@ DEFAULT_NAMESPACE = "homeassistant"
 
 # Domain whose coordinate attributes we export.
 TRACKER_DOMAIN = "device_tracker"
+
+# Only trackers reporting this source_type are exported; router/bluetooth/ping
+# trackers are excluded even when they carry latitude/longitude attributes.
+SOURCE_TYPE_GPS = "gps"
