@@ -2,17 +2,17 @@
   "domain": "ha_gps_tracker_exporter",
   "name": "HA GPS Tracker Exporter",
   "codeowners": [
-    "@cuihao"
+    "@cuihaoleo"
   ],
   "config_flow": true,
-  "single_config_entry": true,
   "dependencies": [
     "http"
   ],
-  "documentation": "https://github.com/cuihao/ha-gps-tracker-exporter",
+  "documentation": "https://github.com/cuihaoleo/ha-gps-tracker-exporter",
   "integration_type": "service",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/cuihao/ha-gps-tracker-exporter/issues",
+  "issue_tracker": "https://github.com/cuihaoleo/ha-gps-tracker-exporter/issues",
   "requirements": [],
+  "single_config_entry": true,
   "version": "0.1.0"
 }
