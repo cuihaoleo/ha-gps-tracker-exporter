@@ -8,7 +8,14 @@ from typing import TYPE_CHECKING
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 
-from .const import DOMAIN, ENDPOINT_NAME, ENDPOINT_PATH, LOGGER, TRACKER_DOMAIN
+from .const import (
+    DOMAIN,
+    ENDPOINT_NAME,
+    ENDPOINT_PATH,
+    LOGGER,
+    SOURCE_TYPE_GPS,
+    TRACKER_DOMAIN,
+)
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -39,7 +46,7 @@ def _format_labels(labels: dict[str, str]) -> str:
 
 
 def render_metrics(hass: HomeAssistant, namespace: str) -> str:
-    """Render the current device_tracker coordinates as Prometheus text."""
+    """Render the current GPS device_tracker coordinates as Prometheus text."""
     prefix = f"{namespace}_device_tracker_"
 
     latitude: list[tuple[dict[str, str], str]] = []
@@ -49,6 +56,12 @@ def render_metrics(hass: HomeAssistant, namespace: str) -> str:
 
     for state in hass.states.async_all(TRACKER_DOMAIN):
         attrs = state.attributes
+        # Only export GPS-based trackers. Router/bluetooth/ping trackers may
+        # still carry latitude/longitude (e.g. the home-zone position), so
+        # filtering on coordinates alone is not enough to exclude them.
+        if attrs.get("source_type") != SOURCE_TYPE_GPS:
+            continue
+
         lat = _format_value(attrs.get("latitude"))
         lon = _format_value(attrs.get("longitude"))
         # Coordinates are the whole point; skip entities that lack them.

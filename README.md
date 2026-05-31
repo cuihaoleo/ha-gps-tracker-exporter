@@ -30,8 +30,10 @@ from the current state on every scrape (pull-based, no polling interval).
 
 ## Exported metrics
 
-For every `device_tracker` that currently has `latitude` and `longitude`
-attributes (entities missing coordinates are skipped):
+For every GPS-based `device_tracker` (`source_type: gps`) that currently has
+`latitude` and `longitude` attributes. Non-GPS trackers (router, bluetooth,
+ping, …) are skipped even if they report coordinates, as are GPS trackers
+missing coordinates:
 
 | Metric (default namespace) | Type | Source attribute |
 | --- | --- | --- |
