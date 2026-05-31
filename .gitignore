@@ -16,3 +16,8 @@ coverage.xml
 # Home Assistant configuration
 config/*
 !config/configuration.yaml
+
+
+# Local dev tooling / containers (not part of the integration)
+.venv/
+.devcontainer-lock.json
